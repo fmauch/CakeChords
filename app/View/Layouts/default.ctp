@@ -39,6 +39,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="container">
+    <div id="header">
+      <?php echo $this->Html->link("Index",array('controller' => 'songs', 'action' => 'index')); ?>
+    </div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>

@@ -4,7 +4,9 @@ class SongsController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('songs', $this->Song->find('all'));
+		$this->set('songs', $this->Song->find('all', array(
+      'order' => array('band', 'title')
+		)));
 	}
 
 	public function view($id = null) {
