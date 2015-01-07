@@ -14,7 +14,7 @@ echo '
       echo $this->Form->input('year', array(
                           'type' => 'text'
                         ));
-      echo $this->Form->input('capo original');
+      echo $this->Form->input('capo_original');
       echo '
     </td>
     <td>';
