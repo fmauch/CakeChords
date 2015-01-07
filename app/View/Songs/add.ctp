@@ -8,7 +8,7 @@ echo '
   <tr>
     <td>';
       echo $this->Form->input('title');
-      echo $this->Form->input('band');
+      echo $this->Form->input('Artist.name');
       echo $this->Form->input('year', array(
                           'type' => 'text'
                         ));
@@ -16,7 +16,7 @@ echo '
       echo '
     </td>
     <td>';
-      echo $this->Form->input('text', array('rows' => '50'));
+      echo $this->Form->input('text', array('rows' => '50', 'style' => 'font-family:monospace;'));
       echo '
     </td>
   </tr>

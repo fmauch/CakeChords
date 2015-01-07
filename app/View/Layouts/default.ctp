@@ -40,7 +40,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
     <div id="header">
-      <?php echo $this->Html->link("Index",array('controller' => 'songs', 'action' => 'index')); ?>
+      <?php echo $this->Html->link("All Songs",array('controller' => 'songs', 'action' => 'index')); ?>
+      <?php echo $this->Html->link("Artists",array('controller' => 'artists', 'action' => 'index')); ?>
     </div>
 		<div id="content">
 

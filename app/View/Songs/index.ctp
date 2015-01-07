@@ -16,7 +16,8 @@
 
     <?php foreach ($songs as $song): ?>
     <tr>
-        <td><?php echo $song['Song']['band']; ?></td>
+        <td><?php echo $this->Html->link($song['Artist']['name'],
+array('controller' => 'artists', 'action' => 'view', $song['Song']['band'])); ?></td>
         <td>
             <?php echo $this->Html->link($song['Song']['title'],
 array('controller' => 'songs', 'action' => 'view', $song['Song']['id'])); ?>

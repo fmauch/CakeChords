@@ -1,6 +1,7 @@
 <!-- File: /app/View/Songs/view.ctp -->
 
-<h1><?php echo h($song['Song']['band']); ?></h1>
+<?php echo $this->Html->link($song['Artist']['name'],
+array('controller' => 'artists', 'action' => 'view', $song['Song']['band'])); ?>
 <h2><?php echo h($song['Song']['title']); ?></h2>
 
 <p><small>Created: <?php echo $song['Song']['year']; ?></small></p>

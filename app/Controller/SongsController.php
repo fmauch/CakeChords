@@ -5,7 +5,7 @@ class SongsController extends AppController {
 
 	public function index() {
 		$this->set('songs', $this->Song->find('all', array(
-      'order' => array('band', 'title')
+      'order' => array('Artist.name', 'title')
 		)));
 	}
 
@@ -24,7 +24,12 @@ class SongsController extends AppController {
 	public function add() {
     if ($this->request->is('post')) {
       $this->Song->create();
-      if ($this->Song->save($this->request->data)) {
+      $artist = $this->Song->Artist->find('first', array('conditions' => array('name' => $this->request->data['Artist']['name'])));
+      if ($artist) {
+        $this->Song->band = $artist['Artist']['id'];
+        $this->request->data['Artist']['id'] = $artist['Artist']['id'];
+      }
+      if ($this->Song->saveAll($this->request->data)) {
         $this->Session->setFlash(__('Your song has been saved.'));
         return $this->redirect(array('action' => 'index'));
       }
@@ -44,9 +49,14 @@ class SongsController extends AppController {
 
     if ($this->request->is(array('song', 'put'))) {
       $this->Song->id = $id;
-      if ($this->Song->save($this->request->data)) {
+      $artist = $this->Song->Artist->find('first', array('conditions' => array('name' => $this->request->data['Artist']['name'])));
+      if ($artist) {
+        $this->Song->band = $artist['Artist']['id'];
+        $this->request->data['Artist']['id'] = $artist['Artist']['id'];
+      }
+      if ($this->Song->saveAll($this->request->data)) {
         $this->Session->setFlash(__('Your song has been updated.'));
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'view', $id));
       }
       $this->Session->setFlash(__('Unable to update your song.'));
     }
