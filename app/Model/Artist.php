@@ -9,5 +9,9 @@ class Artist extends AppModel {
             'dependent' => true
         )
     );
+    
+  public $validate = array(
+    'name' => array('rule' => 'notEmpty'),
+    );
 }
 ?>

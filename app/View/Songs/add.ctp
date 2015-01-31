@@ -8,7 +8,9 @@ echo '
   <tr>
     <td>';
       echo $this->Form->input('title');
-      echo $this->Form->input('Artist.name');
+      echo $this->Form->input('Artist.name', array(
+          'label' => 'Artist name',
+      ));
       echo $this->Form->input('year', array(
                           'type' => 'text'
                         ));
