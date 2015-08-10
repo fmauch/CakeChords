@@ -7,9 +7,10 @@
 ); ?>
 <table>
     <tr>
-        <th>Artist</th>
-        <th>Title</th>
-        <th>Year</th>
+	<th><?php echo $this->Paginator->sort('Artist.name'); ?></th>
+	<th><?php echo $this->Paginator->sort('title'); ?></th>
+	<th><?php echo $this->Paginator->sort('year'); ?></th>
+
     </tr>
 
     <!-- Here is where we loop through our $songs array, printing out post info -->

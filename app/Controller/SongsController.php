@@ -1,12 +1,10 @@
 <?php
 
 class SongsController extends AppController {
-	public $helpers = array('Html', 'Form');
+	public $helpers = array('Html', 'Form', 'Paginator');
 
 	public function index() {
-		$this->set('songs', $this->Song->find('all', array(
-      'order' => array('Artist.name', 'title')
-		)));
+		$this->set('songs', $this->paginate());
 	}
 
 	public function view($id = null) {
@@ -78,6 +76,12 @@ class SongsController extends AppController {
       return $this->redirect(array('action' => 'index'));
     }
   }
+  
+  public $paginate = array(
+    'order' => array(
+	'title' => 'asc'
+    )
+  );
 
 } 
 
