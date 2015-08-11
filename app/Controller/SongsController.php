@@ -78,6 +78,7 @@ class SongsController extends AppController {
   }
   
   public $paginate = array(
+    'limit' => 100,
     'order' => array(
 	'title' => 'asc'
     )

@@ -1,10 +1,12 @@
 <!-- File: /app/View/Songs/index.ctp -->
 
-<h1>Songs</h1>
+<h1>Songs<?php echo $this->Paginator->numbers(array('before' => ' - page ')); ?></h1>
 <?php echo $this->Html->link(
     'Add Song',
     array('controller' => 'songs', 'action' => 'add')
-); ?>
+);
+?>
+
 <table>
     <tr>
 	<th><?php echo $this->Paginator->sort('Artist.name'); ?></th>
