@@ -1131,12 +1131,14 @@ class CakeRequestTest extends CakeTestCase {
  * @return void
  */
 	public function testHeader() {
+		$_SERVER['HTTP_X_THING'] = '';
 		$_SERVER['HTTP_HOST'] = 'localhost';
 		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-ca) AppleWebKit/534.8+ (KHTML, like Gecko) Version/5.0 Safari/533.16';
 		$request = new CakeRequest('/', false);
 
 		$this->assertEquals($_SERVER['HTTP_HOST'], $request->header('host'));
 		$this->assertEquals($_SERVER['HTTP_USER_AGENT'], $request->header('User-Agent'));
+		$this->assertSame('', $request->header('X-thing'));
 	}
 
 /**
@@ -1419,6 +1421,24 @@ class CakeRequestTest extends CakeTestCase {
 		$this->assertEquals('/cakephp/', $request->webroot);
 		$this->assertEquals('bananas/eat/tasty_banana', $request->url);
 		$this->assertEquals('/cakephp/bananas/eat/tasty_banana', $request->here);
+	}
+
+/**
+ * Test that even if mod_rewrite is on, and the url contains index.php
+ * and there are numerous //s that the base/webroot is calculated correctly.
+ *
+ * @return void
+ */
+	public function testBaseUrlWithModRewriteAndExtraSlashes() {
+		$_SERVER['REQUEST_URI'] = '/cakephp/webroot///index.php/bananas/eat';
+		$_SERVER['PHP_SELF'] = '/cakephp/webroot///index.php/bananas/eat';
+		$_SERVER['PATH_INFO'] = '/bananas/eat';
+		$request = new CakeRequest();
+
+		$this->assertEquals('/cakephp', $request->base);
+		$this->assertEquals('/cakephp/', $request->webroot);
+		$this->assertEquals('bananas/eat', $request->url);
+		$this->assertEquals('/cakephp/bananas/eat', $request->here);
 	}
 
 /**
