@@ -9,11 +9,11 @@ class Song extends AppModel {
   );
   
 	public $validate = array(
-    'title' => array('rule' => 'notEmpty'),
-    'band' => array('rule' => 'notEmpty',
+    'title' => array('rule' => 'notBlank'),
+    'band' => array('rule' => 'notBlank',
                     array('comparison', '>', 0)
                    ),
-    'text' => array('rule' => 'notEmpty'),
+    'text' => array('rule' => 'notBlank'),
     );
 }
 
