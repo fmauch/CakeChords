@@ -17,6 +17,7 @@ class SongsController extends AppController {
 			throw new NotFoundException(__('Invalid song'));
 		}
 		$this->set('song', $song);
+		$this->set('user_id', $this->Auth->user('id'));
 	}
 	
 	public function add() {
@@ -45,6 +46,7 @@ class SongsController extends AppController {
       throw new NotFoundException(__('Invalid song'));
     }
 
+    $this->set('user_id', $this->Auth->user('id'));
     if ($this->request->is(array('song', 'put'))) {
       $this->Song->id = $id;
       $artist = $this->Song->Artist->find('first', array('conditions' => array('name' => $this->request->data['Artist']['name'])));

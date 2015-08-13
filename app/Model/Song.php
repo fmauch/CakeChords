@@ -8,6 +8,12 @@ class Song extends AppModel {
     )
   );
   
+  public $hasMany = array(
+        'UserViews' => array(
+            'className' => 'UserView'
+        )
+    );
+  
 	public $validate = array(
     'title' => array('rule' => 'notBlank'),
     'band' => array('rule' => 'notBlank',

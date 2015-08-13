@@ -15,6 +15,21 @@ echo '
                           'type' => 'text'
                         ));
       echo $this->Form->input('capo_original');
+      $count=0;
+      foreach($this->data['UserViews'] as $view) {
+      if ($view['user_id'] == $user_id)
+        {
+          echo $this->Form->input('UserViews.'.$count.'.capo', array(
+                            'label' => 'Capo ('.$view['comment'].')'
+          ));
+          echo $this->Form->input('UserViews.'.$count.'.comment', array(
+                            'label' => 'Comment ('.$view['comment'].')'
+          ));
+          echo $this->Form->input('UserViews.'.$count.'.id', array('type' => 'hidden'));
+        }
+        $count++;
+      }
+
       echo '
     </td>
     <td>';

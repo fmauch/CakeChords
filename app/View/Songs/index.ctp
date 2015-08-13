@@ -12,6 +12,7 @@
 	<th><?php echo $this->Paginator->sort('Artist.name'); ?></th>
 	<th><?php echo $this->Paginator->sort('title'); ?></th>
 	<th><?php echo $this->Paginator->sort('year'); ?></th>
+	<th>Actions</th>
 
     </tr>
 
@@ -26,6 +27,7 @@ array('controller' => 'artists', 'action' => 'view', $song['Song']['band'])); ?>
 array('controller' => 'songs', 'action' => 'view', $song['Song']['id'])); ?>
         </td>
         <td><?php echo $song['Song']['year']; ?></td>
+        <td><?php echo $this->Html->link('UV', array('controller' => 'user_views', 'action' => 'add', $song['Song']['id'])); ?></td>
     </tr>
     <?php endforeach; ?>
     <?php unset($song); ?>
