@@ -8,19 +8,31 @@ $(function(){
   var wh = $(window).height();
 //     alert(wh);
   
-  var html_org = $('#text > p').html();
-  var html_calc = '<span>' + html_org + '</span>';
-  $('#text > p').html(html_calc);
-  var width = $('#text > p').find('span:first').width();
-  $('#text > p').html(html_org);
+  var html_org = $('#text').html();
   
-  console.log(width);
+  var maxWidth = 0;
+  var widestPar = null;
+  var $element;
+  $("#text > p > tt").each(function(){
+    $element = $(this);
+    if($element.width() > maxWidth){
+      maxWidth = $element.width();
+      widestPar = $element; 
+    }
+
+  });
+  console.log(maxWidth);
+  console.log(widestPar);
+  
+  $('#text').html(html_org);
+  
 
   if (wh < h) {
     iColumns = Math.ceil(h/wh); // decreasing amount of columns
-    while (iColumns * width > $(window).width() && iColumns > 1) {
+    while (iColumns * maxWidth > $(window).width() && iColumns > 1) {
       iColumns--;
     }
+    console.log(iColumns);
     cont.style.MozColumnCount = iColumns; // apply styles
     cont.style.WebkitColumnCount = iColumns;
   }

@@ -25,12 +25,22 @@ array('controller' => 'artists', 'action' => 'view', $song['Song']['band'])); ?>
 -moz-column-rule: none;
 -webkit-column-count: 1;
 -webkit-column-gap: 1.5em;
--webkit-column-rule: none;"><p style="font-family:monospace; white-space:pre">
+-webkit-column-rule: none;">
 <?php
 
-echo h($song['Song']['text']); 
+$beginning = substr($song['Song']['text'], 0, 3);
+if ($beginning == "<p>")
+{
+  echo $song['Song']['text'];
+}
+else
+{
+  echo '<p style="font-family:monospace; white-space:pre">';
+  echo h($song['Song']['text']);
+  echo '</p>';
+}
 
-?></p></div>
+?></div>
 
 
 <div style="clear:both;"><p><?php
