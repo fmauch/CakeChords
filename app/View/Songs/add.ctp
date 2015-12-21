@@ -1,5 +1,7 @@
 <!-- File: /app/View/Songs/add.ctp -->
 
+<?php echo $this->Html->script('ckeditor/ckeditor');?>
+
 <h1>Add Song</h1>
 <?php
 echo $this->Form->create('Song');
@@ -18,7 +20,7 @@ echo '
       echo '
     </td>
     <td>';
-      echo $this->Form->input('text', array('rows' => '50', 'style' => 'font-family:monospace;'));
+      echo $this->Form->textarea('text',array('class'=>'ckeditor'));
       echo '
     </td>
   </tr>
