@@ -29,7 +29,7 @@ array('controller' => 'artists', 'action' => 'view', $song['Song']['band'])); ?>
 <?php
 
 $beginning = substr($song['Song']['text'], 0, 3);
-if ($beginning == "<p>")
+if ($beginning == "<p>" || $beginning == "<pr")
 {
   echo $song['Song']['text'];
 }
