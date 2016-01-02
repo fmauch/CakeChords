@@ -34,7 +34,7 @@ class AppController extends Controller {
     //...
 
     public $components = array(
-        'Session',
+        'Flash',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'songs',

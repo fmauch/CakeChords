@@ -19,7 +19,7 @@ class SongsController extends AppController {
 		$this->set('song', $song);
 		$this->set('user_id', $this->Auth->user('id'));
 	}
-	
+
 	public function add() {
     if ($this->request->is('post')) {
       $this->Song->create();
@@ -29,13 +29,13 @@ class SongsController extends AppController {
         $this->request->data['Artist']['id'] = $artist['Artist']['id'];
       }
       if ($this->Song->saveAll($this->request->data)) {
-        $this->Session->setFlash(__('Your song has been saved.'));
+        $this->Flash->set(__('Your song has been saved.'));
         return $this->redirect(array('action' => 'index'));
       }
-      $this->Session->setFlash(__('Unable to add your song.'));
+      $this->Flash->set(__('Unable to add your song.'));
     }
   }
-  
+
   public function edit($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid song'));
@@ -55,30 +55,30 @@ class SongsController extends AppController {
         $this->request->data['Artist']['id'] = $artist['Artist']['id'];
       }
       if ($this->Song->saveAll($this->request->data)) {
-        $this->Session->setFlash(__('Your song has been updated.'));
+        $this->Flash->set(__('Your song has been updated.'));
         return $this->redirect(array('action' => 'view', $id));
       }
-      $this->Session->setFlash(__('Unable to update your song.'));
+      $this->Flash->set(__('Unable to update your song.'));
     }
 
     if (!$this->request->data) {
       $this->request->data = $song;
     }
   }
-  
+
   public function delete($id) {
     if ($this->request->is('get')) {
       throw new MethodNotAllowedException();
     }
 
     if ($this->Song->delete($id)) {
-      $this->Session->setFlash(
+      $this->Flash->set(
         __('The song with id: %s has been deleted.', h($id))
       );
       return $this->redirect(array('action' => 'index'));
     }
   }
-  
+
   public $paginate = array(
     'limit' => 100,
     'order' => array(
@@ -86,6 +86,6 @@ class SongsController extends AppController {
     )
   );
 
-} 
+}
 
 ?>

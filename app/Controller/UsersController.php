@@ -20,10 +20,10 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Flash->set(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('The user could not be saved. Please, try again.')
             );
         }
@@ -36,10 +36,10 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Flash->set(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('The user could not be saved. Please, try again.')
             );
         } else {
@@ -56,13 +56,13 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
+            $this->Flash->set(__('User deleted'));
             return $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('User was not deleted'));
+        $this->Flash->set(__('User was not deleted'));
         return $this->redirect(array('action' => 'index'));
     }
-    
+
     public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
@@ -74,7 +74,7 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
+            $this->Flash->set(__('Invalid username or password, try again'));
         }
     }
 
